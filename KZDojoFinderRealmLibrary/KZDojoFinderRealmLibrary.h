@@ -17,3 +17,6 @@ FOUNDATION_EXPORT const unsigned char KZDojoFinderRealmLibraryVersionString[];
 // In this header, you should import all the public headers of your framework using statements like #import <KZDojoFinderRealmLibrary/PublicHeader.h>
 
 
+#import "RealmDojo.h"
+#import "RealmRegionContact.h"
+#import "RealmRegionSession.h"
