@@ -19,4 +19,4 @@ FOUNDATION_EXPORT const unsigned char KZDojoFinderRealmLibraryVersionString[];
 
 #import "RealmDojo.h"
 #import "RealmRegionContact.h"
-#import "RealmRegionSession.h"
+#import "RealmSession.h"
