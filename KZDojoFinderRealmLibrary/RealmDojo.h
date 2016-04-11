@@ -10,7 +10,7 @@
 #import <Realm/Realm.h>
 #import <KZDojoFinderLibrary/KZDojoFinderLibrary.h>
 
-@interface RealmDojo : RLMObject <Dojo>
+@interface RealmDojo : RLMObject<Dojo>
 @property double latitude;
 @property double longitude;
 @end
