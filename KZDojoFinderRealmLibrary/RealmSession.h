@@ -8,8 +8,11 @@
 
 #import <Realm/Realm.h>
 #import <KZDojoFinderLibrary/KZDojoFinderLibrary.h>
+#import "RealmDojo.h"
 
 @interface RealmSession : RLMObject <Session>
+
+@property RealmDojo* realmDojo;
 
 @end
 

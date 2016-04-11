@@ -20,7 +20,11 @@
 @synthesize type;
 @synthesize details;
 
-@synthesize dojo;
+@synthesize realmDojo;
+
+-(id<Dojo>)dojo {
+	return self.realmDojo;
+}
 
 // Specify default values for properties
 
@@ -31,9 +35,9 @@
 
 // Specify properties to ignore (Realm won't persist these)
 
-//+ (NSArray *)ignoredProperties
-//{
-//    return @[];
-//}
++ (NSArray *)ignoredProperties
+{
+    return @[@"dojo"];
+}
 
 @end

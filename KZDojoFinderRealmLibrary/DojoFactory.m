@@ -16,22 +16,17 @@ static dispatch_queue_t backgroundQueue;
 
 +(NSArray*)dojosNear:(CLLocation*)location withinKilometers:(double)range {
 	
-	NSLog(@"Define bounding rectangle within %f", range);
-	
-	MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location.coordinate, range, range);
+	MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location.coordinate, range * 1000, range * 1000);
 	
 	CLLocationCoordinate2D start = CLLocationCoordinate2DMake(region.center.latitude + (region.span.latitudeDelta / 2.0),
 																														region.center.longitude - (region.span.longitudeDelta / 2.0));
 	CLLocationCoordinate2D end = CLLocationCoordinate2DMake(region.center.latitude - (region.span.latitudeDelta / 2.0),
 																													region.center.longitude + (region.span.longitudeDelta / 2.0));
 	
-	NSLog(@"Define predicit");
 	NSPredicate* predict = [NSPredicate predicateWithFormat:@"latitude < %f AND latitude > %f AND longitude > %f AND longitude < %f", start.latitude, end.latitude, start.longitude, end.longitude];
 	
-	NSLog(@"List Dojos within bounding rectangle");
 	//	RLMRealm *realm = [RLMRealm defaultRealm];
 	RLMResults* results = [RealmDojo objectsWithPredicate:predict];
-	NSLog(@"Return dojo results");
 	
 	// NSFastEnumeration is about the only interface between NSArray and RLMResults
 	// which is kind of annoying, understandable, but annoying. I'm not overly opposed
@@ -58,9 +53,7 @@ static dispatch_queue_t backgroundQueue;
 	
 	dispatch_async(backgroundQueue, ^(void) {
 		
-		NSLog(@"In background get dojos near");
 		NSArray* dojos = [DojoFactory dojosNear:userPoint withinKilometers:range];
-		NSLog(@"Resync to main thread");
 		dispatch_async(dispatch_get_main_queue(), ^{
 			callBack(dojos);
 		});
