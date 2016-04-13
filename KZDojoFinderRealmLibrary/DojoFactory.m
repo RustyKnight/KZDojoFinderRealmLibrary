@@ -23,6 +23,8 @@ static dispatch_queue_t backgroundQueue;
 	CLLocationCoordinate2D end = CLLocationCoordinate2DMake(region.center.latitude - (region.span.latitudeDelta / 2.0),
 																													region.center.longitude + (region.span.longitudeDelta / 2.0));
 	
+	NSLog(@"Dojos within %fx%f - %fx%f", start.latitude, end.latitude, start.longitude, end.longitude);
+	
 	NSPredicate* predict = [NSPredicate predicateWithFormat:@"latitude < %f AND latitude > %f AND longitude > %f AND longitude < %f", start.latitude, end.latitude, start.longitude, end.longitude];
 	
 	//	RLMRealm *realm = [RLMRealm defaultRealm];
